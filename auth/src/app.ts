@@ -5,6 +5,7 @@ import cookieSession from 'cookie-session';
 
 import { SignupRouter } from './routes/signup';
 import { SigninRouter } from './routes/signin';
+import { SignoutRouter } from './routes/signout';
 import { NotFoundError } from '@fm-challenge/common';
 import { errorHandler } from '@fm-challenge/common';
 
@@ -18,6 +19,7 @@ app.use(cookieSession({
 
 app.use(SignupRouter);
 app.use(SigninRouter);
+app.use(SignoutRouter);
 
 app.all('*', async () => {
     throw new NotFoundError();

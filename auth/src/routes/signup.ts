@@ -1,10 +1,10 @@
 import express, {Request, Response} from 'express';
-import {body} from "express-validator";
+import {body} from 'express-validator';
 import jwt from 'jsonwebtoken';
 
 import { User } from '../models/user';
-import { BadRequestError } from "@fm-challenge/common";
-import { validateRequest } from "@fm-challenge/common";
+import { BadRequestError } from '@fm-challenge/common';
+import { validateRequest } from '@fm-challenge/common';
 
 const router = express.Router();
 
