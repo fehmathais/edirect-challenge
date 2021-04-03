@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "ts-node-dev src/index.ts",
-    "test": "jest --watchAll --no-chache"
+    "test": "jest --watchAll --no-chache",
+    "coverage": "jest --no-cache --coverage"
   },
   "jest": {
     "preset": "ts-jest",
