@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import {app} from "./app";
-import { DatabaseConnectionError } from "./errors/database-connection-error";
+import { DatabaseConnectionError } from "@fm-challenge/common";
 
 const start = async () => {
     if (!process.env.MONGO_URL) {

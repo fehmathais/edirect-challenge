@@ -4,8 +4,8 @@ import {json} from 'body-parser';
 import cookieSession from "cookie-session";
 
 import { SignupRouter } from './routes/signup';
-import { NotFoundError } from './errors/not-found-error';
-import { errorHandler } from './middlewares/error-handler';
+import { NotFoundError } from '@fm-challenge/common';
+import { errorHandler } from '@fm-challenge/common';
 
 const app = express();
 
