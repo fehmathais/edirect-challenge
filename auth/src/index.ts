@@ -22,6 +22,10 @@ const start = async () => {
     if (!process.env.MONGO_URL) {
         throw new Error('MONGO_URL is not defined!');
     }
+
+    if (!process.env.JWT_KEY) {
+        throw new Error('JWT_KEY is not defined!');
+    }
     
     try {
         await mongoose.connect(process.env.MONGO_URL!, {

@@ -23,6 +23,11 @@ spec:
                 secretKeyRef:
                   name: secrets
                   key: mongo-url
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: secrets
+                  key: jwt-key
 ---
 apiVersion: v1
 kind: Service
