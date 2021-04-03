@@ -1,5 +1,6 @@
 import express from 'express';
 import 'express-async-errors';
+import mongoose from 'mongoose';
 import {json} from 'body-parser';
 
 import { SignupRouter } from './routes/signup';
@@ -17,6 +18,25 @@ app.all('*', async () => {
 
 app.use(errorHandler);
 
-app.listen(3000, () => {
-    console.log('Listing on port 3000!!!');
-});
+const start = async () => {
+    if (!process.env.MONGO_URL) {
+        throw new Error('MONGO_URL is not defined!');
+    }
+    
+    try {
+        await mongoose.connect(process.env.MONGO_URL!, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useCreateIndex: true
+        });
+        console.log('Connected to mongodb...');
+    } catch (e) {
+        console.log(e);
+    }
+
+    app.listen(3000, () => {
+        console.log('Listing on port 3000!!!');
+    });
+}
+
+start();
