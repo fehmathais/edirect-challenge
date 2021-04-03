@@ -65,7 +65,7 @@ it('disallows duplicate emails', async () => {
     await request(app)
         .post('/api/users/signup')
         .send({
-            name: "User Testing",
+            name: 'User Testing',
             email: 'test@test.com',
             password: '233214'
         })
@@ -84,7 +84,7 @@ it('sets a cookie after successful signup', async () => {
     const response = await request(app)
         .post('/api/users/signup')
         .send({
-            name: "User Testing",
+            name: 'User Testing',
             email: 'test@test.com',
             password: 'password',
         })
