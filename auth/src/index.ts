@@ -7,6 +7,7 @@ import cookieSession from "cookie-session";
 import { SignupRouter } from './routes/signup';
 import { NotFoundError } from './errors/not-found-error';
 import { errorHandler } from './middlewares/error-handler';
+import { DatabaseConnectionError } from "./errors/database-connection-error";
 
 const app = express();
 
@@ -41,7 +42,7 @@ const start = async () => {
         });
         console.log('Connected to mongodb...');
     } catch (e) {
-        console.log(e);
+        throw new DatabaseConnectionError();
     }
 
     app.listen(3000, () => {
