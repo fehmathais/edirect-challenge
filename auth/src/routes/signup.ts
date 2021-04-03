@@ -11,6 +11,10 @@ const router = express.Router();
 router.post(
     '/api/users/signup',
     [
+        body('name')
+            .not()
+            .isEmpty()
+            .withMessage('The name must be provided!'),
         body('email')
             .isEmail()
             .withMessage('Email must be valid!'),
@@ -21,7 +25,7 @@ router.post(
     ],
     validateRequest, 
 async (req: Request, res: Response) => {
-    const {email, password} = req.body;
+    const {name, email, password} = req.body;
 
     const existingUser = await User.findOne({email});
 
@@ -29,12 +33,13 @@ async (req: Request, res: Response) => {
         throw new BadRequestError('This user already exists');
     }
 
-    const user = User.build({email, password});
+    const user = User.build({name, email, password});
     await user.save();
 
     // Generate json web token
     const userJwt = jwt.sign({
         id: user.id,
+        name: user.name,
         email: user.email
     }, process.env.JWT_KEY!);
 
