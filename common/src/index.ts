@@ -12,6 +12,7 @@ export * from "./middlewares/validate-request";
 
 export * from "./events/subjects";
 export * from "./events/created-task-event";
+export * from "./events/expiration-complete-event";
 export * from "./events/base/base-listener";
 export * from "./events/base/base-publisher";
 
