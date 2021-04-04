@@ -1,6 +1,6 @@
 {
   "name": "@fm-challenge/common",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "./build/index.js",
   "types": "./build/index.d.ts",
   "files": [
@@ -19,7 +19,8 @@
     "cookie-session": "^1.4.0",
     "express": "^4.17.1",
     "express-validator": "^6.10.0",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "node-nats-streaming": "^0.3.2"
   },
   "devDependencies": {
     "del-cli": "^3.0.1",

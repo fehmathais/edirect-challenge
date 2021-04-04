@@ -9,3 +9,10 @@ export * from "./middlewares/current-user";
 export * from "./middlewares/require-auth";
 export * from "./middlewares/error-handler";
 export * from "./middlewares/validate-request";
+
+export * from "./events/subjects";
+export * from "./events/created-task-event";
+export * from "./events/base/base-listener";
+export * from "./events/base/base-publisher";
+
+export * from "./types/task-status";
