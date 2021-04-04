@@ -25,6 +25,14 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+    - image: fehmathais/tasks
+      context: tasks
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
     - image: fehmathais/client
       context: client
       docker:

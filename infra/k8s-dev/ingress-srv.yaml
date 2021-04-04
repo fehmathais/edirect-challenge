@@ -19,6 +19,10 @@ spec:
             backend:
               serviceName: projects-srv
               servicePort: 80
+          - path: /api/tasks/?(.*)
+            backend:
+              serviceName: tasks-srv
+              servicePort: 80
           - path: /?(.*)
             backend:
               serviceName: client-srv
