@@ -1,19 +1,18 @@
 import mongoose from 'mongoose';
 import { TaskStatus } from "./task-status";
-import { ProjectDoc } from "./project";
 
 interface TaskAttrs {
     description: string;
     expiration: Date;
     status: TaskStatus;
-    projectId: ProjectDoc;
+    projectId: string;
 }
 
 export interface TaskDoc extends mongoose.Document {
     description: string;
     expiration: Date;
     status: TaskStatus;
-    projectId: ProjectDoc;
+    projectId: string;
 }
 
 interface TaskModel extends mongoose.Model<TaskDoc> {
@@ -36,9 +35,9 @@ const taskSchema = new mongoose.Schema(
             enum: Object.values(TaskStatus),
             default: TaskStatus.Created
         },
-        projectId: { 
-            type: mongoose.Schema.Types.ObjectId, 
-            ref: 'Projects' 
+        projectId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Projects'
         },
     },
     {

@@ -10,7 +10,7 @@ router.get(
 async (req: Request, res: Response) => {
     const projects = await Project.find({
         userId: req.currentUser!.id
-    });
+    }).populate('tasks');
     
     res.send(projects);
 });

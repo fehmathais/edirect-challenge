@@ -48,8 +48,11 @@ router.post(
             projectId,
             status: TaskStatus.Created
         });
-        
         await task.save();
+
+        project.tasks.push(task);
+        project.save();
+        
         res.status(201).send(task);
     });
 

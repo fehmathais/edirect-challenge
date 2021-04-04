@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { Task, TaskDoc } from './task';
 
 interface ProjectAttrs {
     title: string;
@@ -14,6 +15,7 @@ interface ProjectDoc extends mongoose.Document {
     createdAt: Date;
     updatedAt: Date;
     deletedAt: Date;
+    tasks: TaskDoc[];
 }
 
 interface ProjectModel extends mongoose.Model<ProjectDoc> {
@@ -38,7 +40,10 @@ const projectSchema = new mongoose.Schema(
         },
         deletedAt: {
             type: mongoose.Schema.Types.Date,
-        }
+        },
+        tasks: [
+            { type: mongoose.Schema.Types.ObjectId, ref: Task }
+        ]
     },
     {
         toJSON: {

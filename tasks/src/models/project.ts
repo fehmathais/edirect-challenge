@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { TaskDoc } from "./task";
 
 interface ProjectAttrs {
     title: string;
@@ -6,14 +7,16 @@ interface ProjectAttrs {
     createdAt?: Date;
     updatedAt?: Date;
     deletedAt?: Date;
+    tasks: TaskDoc[]
 }
 
-interface ProjectDoc extends mongoose.Document {
+export interface ProjectDoc extends mongoose.Document {
     title: string;
     userId: string;
     createdAt: Date;
     updatedAt: Date;
     deletedAt: Date;
+    tasks: TaskDoc[]
 }
 
 interface ProjectModel extends mongoose.Model<ProjectDoc> {
@@ -38,7 +41,10 @@ const projectSchema = new mongoose.Schema(
         },
         deletedAt: {
             type: mongoose.Schema.Types.Date,
-        }
+        },
+        tasks: [
+            { type: mongoose.Schema.Types.ObjectId, ref: 'Tasks' }
+        ]
     },
     {
         toJSON: {
@@ -50,17 +56,8 @@ const projectSchema = new mongoose.Schema(
     }
 );
 
-projectSchema.pre('find', function() {
-    this.where("deletedAt").equals(null)
-});
-
 projectSchema.statics.build = (attrs: ProjectAttrs) => {
-    return new Project({
-        title: attrs.title,
-        userId: attrs.userId,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-    });
+    return new Project(attrs);
 };
 
 const Project = mongoose.model<ProjectDoc, ProjectModel>('Projects', projectSchema);
