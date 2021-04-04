@@ -15,7 +15,7 @@ spec:
             backend:
               serviceName: auth-srv
               servicePort: 80
-          - path: /api/users/?(.*)
+          - path: /api/projects/?(.*)
             backend:
               serviceName: projects-srv
               servicePort: 80

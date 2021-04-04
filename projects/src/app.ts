@@ -4,8 +4,8 @@ import 'express-async-errors';
 import {json} from 'body-parser';
 import cookieSession from 'cookie-session';
 
-import { NotFoundError } from '@fm-challenge/common';
-import { errorHandler } from '@fm-challenge/common';
+import { NewProjectRouter } from "./routes/new-project";
+import { currentUser, NotFoundError, errorHandler } from '@fm-challenge/common';
 
 const app = express();
 
@@ -16,6 +16,9 @@ app.use(cookieSession({
     signed: false,
     secure: process.env.NODE_ENV !== 'test',
 }));
+
+app.use(currentUser);
+app.use(NewProjectRouter);
 
 app.all('*', async () => {
     throw new NotFoundError();
