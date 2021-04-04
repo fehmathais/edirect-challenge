@@ -1,5 +1,6 @@
 import { natsWrapper } from './nats-wrapper';
 import { DatabaseConnectionError } from "@fm-challenge/common";
+import { CreatedTaskListener } from "./events/listeners/created-task-listener";
 
 const start = async () => {
     if (!process.env.NATS_URL) {
@@ -23,6 +24,7 @@ const start = async () => {
         process.on('SIGINT', () => natsWrapper.client.close());
         process.on('SIGTERM', () => natsWrapper.client.close());
 
+        new CreatedTaskListener(natsWrapper.client).listen();
     } catch (err) {
         throw new DatabaseConnectionError();
     }

@@ -297,9 +297,9 @@
     minimist "^1.2.0"
 
 "@fm-challenge/common@^1.0.2":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@fm-challenge/common/-/common-1.0.6.tgz#4d51b040006fd24ceb32fcabb48603451e69d7f1"
-  integrity sha512-X5ht4wxHPeO1S7Th6avtA+vV516a4DR/0TOrWfvz3GY4ad2rA6gKSnv5LFB9CltK2BlxOz5GX+bDjYkDqZqWBA==
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/@fm-challenge/common/-/common-1.0.10.tgz#aea6f96ccefe2b51f91cfd0c35b06e0a500694f3"
+  integrity sha512-p3+1XbhUWV1TRf79fOwSdtZltfQesQqPSeQnZzrLxNxT5db08nEgfAw0kwVk/enJo6lXeK+/MJ6lzH3f6TVP1Q==
   dependencies:
     "@types/cookie-session" "^2.0.42"
     "@types/express" "^4.17.11"

@@ -56,16 +56,17 @@ router.post(
             status: TaskStatus.Created
         });
         project.tasks.push(task);
-        
+
         await task.save();
         await project.save();
-
+        
         await new CreatedTaskPublisher(natsWrapper.client).publish({
-            description: task.description,
-            expiration: task.expiration,
-            projectId: task.projectId.id,
+            id: task._id,
             status: task.status,
+            expiration: task.expiration,
+            description: task.description,
         });
+        
         
         res.status(201).send(task);
     });
