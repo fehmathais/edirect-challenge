@@ -3,9 +3,9 @@ import {Subjects} from "./subjects";
 export interface CreatedTaskEvent {
     subject: Subjects.TaskCreated;
     data: {
-        description: string;
-        expiration: Date;
+        id: string;
         status: string;
-        projectId: string;
+        expiration: Date;
+        description: string;
     }
 }
