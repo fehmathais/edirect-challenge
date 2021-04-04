@@ -1,6 +1,7 @@
 import Header from "../../components/organism/molecules/header";
 import { useEffect } from "react";
 import Router from "next/router";
+import Projects from "./projects";
 
 const PanelPage = ({ currentUser }) => {
     useEffect((): any => {
@@ -19,7 +20,9 @@ const PanelPage = ({ currentUser }) => {
         <div>
             <Header currentuser={currentUser} />
             
-            <h1>TESTE</h1>
+            <div className="container-fluid mt-3">
+                <Projects />
+            </div>
         </div>
     )
 }
