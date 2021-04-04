@@ -1,9 +1,10 @@
 import express, { Request, Response } from 'express';
 import moment from 'moment';
 import mongoose from "mongoose";
-import { body } from 'express-validator';
 import { Task } from "../models/task";
+import { body } from 'express-validator';
 import { Project } from "../models/project";
+import { CreatedTaskPublisher } from "../events/publishers/created-task-publisher";
 import { 
     TaskStatus, 
     BadRequestError, 
@@ -11,6 +12,7 @@ import {
     requireAuth, 
     validateRequest 
 } from '@fm-challenge/common';
+import { natsWrapper } from "../nats-wrapper";
 
 const router = express.Router();
 
@@ -53,10 +55,17 @@ router.post(
             projectId,
             status: TaskStatus.Created
         });
-        await task.save();
-
         project.tasks.push(task);
-        project.save();
+        
+        await task.save();
+        await project.save();
+
+        await new CreatedTaskPublisher(natsWrapper.client).publish({
+            description: task.description,
+            expiration: task.expiration,
+            projectId: task.projectId.id,
+            status: task.status,
+        });
         
         res.status(201).send(task);
     });
