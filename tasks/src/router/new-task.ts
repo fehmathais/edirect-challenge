@@ -4,8 +4,13 @@ import mongoose from "mongoose";
 import { body } from 'express-validator';
 import { Task } from "../models/task";
 import { Project } from "../models/project";
-import { BadRequestError, NotFoundError, requireAuth, validateRequest } from '@fm-challenge/common';
-import { TaskStatus } from "../models/task-status";
+import { 
+    TaskStatus, 
+    BadRequestError, 
+    NotFoundError, 
+    requireAuth, 
+    validateRequest 
+} from '@fm-challenge/common';
 
 const router = express.Router();
 

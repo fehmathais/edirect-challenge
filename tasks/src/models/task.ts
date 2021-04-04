@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { TaskStatus } from "./task-status";
+import { TaskStatus } from "@fm-challenge/common";
 import { ProjectDoc } from "./project";
 
 interface TaskAttrs {
