@@ -4,8 +4,6 @@ const Header = ({ currentuser }) => {
     const links = [
         !currentuser && {label: 'Sign Up', href: '/auth/signup'},
         !currentuser && {label: 'Sign In', href: '/auth/signin'},
-        currentuser && {label: 'My Orders', href: '/orders'},
-        currentuser && {label: 'New Ticket', href: '/tickets/new'},
         currentuser && {label: 'Sign Out', href: '/auth/signout'}
     ]
     .filter(link => link)
@@ -20,10 +18,13 @@ const Header = ({ currentuser }) => {
             </li>
         );
     });
+    
     return (
         <nav className="navbar navbar-light bg-light">
             <Link href="/">
-                <a className="navbar-brand">Git Tix</a>
+                <a className="navbar-brand">
+                    {currentuser.name}
+                </a>
             </Link>
 
             <div className="d-flex justify-content-end">
@@ -33,4 +34,6 @@ const Header = ({ currentuser }) => {
             </div>
         </nav>
     );
-}
+};
+
+export default Header;

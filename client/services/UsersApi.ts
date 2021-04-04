@@ -31,7 +31,21 @@ const currentuser = async () => {
         })
 };
 
+const signout = async () => {
+    const uri = "/users/signout";
+
+    return instance
+        .post(uri)
+        .then((response) => {
+            return response;
+        })
+        .catch((error) => {
+            return error.response;
+        })
+};
+
 export default {
     signin,
     currentuser,
+    signout
 }

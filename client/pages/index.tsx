@@ -1,9 +1,10 @@
 import { useState } from "react";
+import Router from "next/router";
 import UsersApi from "../services/UsersApi";
-import Alert from "../components/common/alerts";
-import EmailInput from "../components/common/inputs/email";
-import PasswordInput from "../components/common/inputs/password";
-import PrimaryButton from "../components/common/buttons/primary";
+import Alert from "../components/organism/atoms/alerts";
+import EmailInput from "../components/organism/atoms/inputs/email";
+import PasswordInput from "../components/organism/atoms/inputs/password";
+import PrimaryButton from "../components/organism/atoms/buttons/primary";
 
 const LoginPage = () => {
     const [loading, setLoading] = useState(false);
@@ -23,7 +24,7 @@ const LoginPage = () => {
 
             setErrors([]);
             setLoading(false);
-            // return history.push("/panel");
+            return Router.push('/panel')
         }
     }
     
