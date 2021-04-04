@@ -11,7 +11,11 @@ spec:
     - host: edirect.dev
       http:
         paths:
-          - path: /
+          - path: /api/users/?(.*)
             backend:
               serviceName: auth-srv
               servicePort: 80
+          - path: /?(.*)
+            backend:
+              serviceName: client-srv
+              servicePort: 3000

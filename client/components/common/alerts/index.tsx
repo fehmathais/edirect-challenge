@@ -15,11 +15,11 @@ const Alert = (props: IProps) => {
     useEffect(() => {
         setErrors(props.errors);
     }, [props.errors])
-    
+
     if (errors.length === 0) {
         return (<div />);
     }
-    
+
     return (
         <div className="alert alert-danger">
             <ul className="my-0">

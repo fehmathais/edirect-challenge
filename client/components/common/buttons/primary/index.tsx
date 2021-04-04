@@ -7,9 +7,9 @@ const PrimaryButton = (props: IProps) => {
     const handleClick = () => {
         return props.clicked();
     };
-    
+
     return (
-        <button type="submit" 
+        <button type="submit"
                 className="btn btn-primary" onClick={handleClick}>
             {props.label}
         </button>

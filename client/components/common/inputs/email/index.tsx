@@ -15,15 +15,15 @@ const EmailInput = (props: IProps) => {
             props.onPressEnter(email);
         }
     };
-    
+
     return (
         <div className="mb-3">
             <label htmlFor="email" className="form-label">
                 {props.label}
             </label>
-            
-            <input type="email" 
-                   className="form-control" 
+
+            <input type="email"
+                   className="form-control"
                    value={email}
                    onKeyDown={onHandleKeyDown}
                    placeholder={props.placeholder}

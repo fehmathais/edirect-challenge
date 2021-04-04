@@ -1,19 +1,16 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import UsersApi from "../services/UsersApi";
 import Alert from "../components/common/alerts";
 import EmailInput from "../components/common/inputs/email";
 import PasswordInput from "../components/common/inputs/password";
 import PrimaryButton from "../components/common/buttons/primary";
-import './index.scss';
 
 const LoginPage = () => {
-    let history = useHistory();
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
-    
+
     const signin = async () => {
         if (!loading) {
             setLoading(true);
@@ -26,19 +23,19 @@ const LoginPage = () => {
 
             setErrors([]);
             setLoading(false);
-            return history.push("/panel");
+            // return history.push("/panel");
         }
     }
     
     return (
-        <div className="container">
+        <div className="container mt-5">
             <div className="card">
                 <div className="card-body">
                     <h2 className="card-title">Login</h2>
-                    
+
                     <Alert errors={errors} />
-                    
-                    <EmailInput label={'E-mail'} 
+
+                    <EmailInput label={'E-mail'}
                                 placeholder={'example@google.com'}
                                 setEmailValue={(email) => {
                                     setEmail(email);
@@ -74,6 +71,6 @@ const LoginPage = () => {
             </div>
         </div>
     )
-};
+}
 
 export default LoginPage;

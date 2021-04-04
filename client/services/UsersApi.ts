@@ -7,9 +7,22 @@ interface SignInRequest {
 
 const signin = async (data: SignInRequest) => {
     const uri = "/users/signin";
-    
+
     return instance
-        .post(uri, data)
+        .post(uri, data, {withCredentials: true})
+        .then((response) => {
+            return response;
+        })
+        .catch((error) => {
+            return error.response;
+        })
+};
+
+const currentuser = async () => {
+    const uri = "/users/currentuser";
+
+    return instance
+        .get(uri)
         .then((response) => {
             return response;
         })
@@ -19,5 +32,6 @@ const signin = async (data: SignInRequest) => {
 };
 
 export default {
-    signin
+    signin,
+    currentuser,
 }
