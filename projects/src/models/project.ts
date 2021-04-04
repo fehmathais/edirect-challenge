@@ -50,6 +50,10 @@ const projectSchema = new mongoose.Schema(
     }
 );
 
+projectSchema.pre('find', function() {
+    this.where("deletedAt").equals(null)
+});
+
 projectSchema.statics.build = (attrs: ProjectAttrs) => {
     return new Project({
         title: attrs.title,

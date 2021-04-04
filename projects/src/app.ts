@@ -6,6 +6,7 @@ import cookieSession from 'cookie-session';
 
 import { NewProjectRouter } from "./routes/new-project";
 import { UpdateProjectRouter } from "./routes/edit-project";
+import { DeleteProjectRouter } from "./routes/delete-project";
 import { ShowAllProjectsRouter } from "./routes/show-all-projects";
 import { currentUser, NotFoundError, errorHandler } from '@fm-challenge/common';
 
@@ -23,6 +24,7 @@ app.use(currentUser);
 app.use(NewProjectRouter);
 app.use(UpdateProjectRouter);
 app.use(ShowAllProjectsRouter);
+app.use(DeleteProjectRouter);
 
 app.all('*', async () => {
     throw new NotFoundError();
