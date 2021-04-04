@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import {app} from "./app";
 import { natsWrapper } from './nats-wrapper';
 import { DatabaseConnectionError } from "@fm-challenge/common";
-
+import { ExpirationCompleteListener } from "./events/listeners/expiration-complete-listener";
 
 const start = async () => {
     if (!process.env.MONGO_URL) {
@@ -33,6 +33,8 @@ const start = async () => {
         });
         process.on('SIGINT', () => natsWrapper.client.close());
         process.on('SIGTERM', () => natsWrapper.client.close());
+
+        new ExpirationCompleteListener(natsWrapper.client).listen();
         
         await mongoose.connect(process.env.MONGO_URL!, {
             useNewUrlParser: true,
