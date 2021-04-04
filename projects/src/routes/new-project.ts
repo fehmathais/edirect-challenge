@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { currentUser, requireAuth, validateRequest } from '@fm-challenge/common';
+import { requireAuth, validateRequest } from '@fm-challenge/common';
 import {body} from 'express-validator';
 import {Project} from "../models/project";
 
