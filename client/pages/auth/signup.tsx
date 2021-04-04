@@ -1,24 +1,26 @@
 import { useState } from "react";
 import Link from "next/link";
 import Router from "next/router";
-import UsersApi from "../services/UsersApi";
-import Alert from "../components/organism/atoms/alerts";
-import EmailInput from "../components/organism/atoms/inputs/email";
-import PasswordInput from "../components/organism/atoms/inputs/password";
-import PrimaryButton from "../components/organism/atoms/buttons/primary";
+import UsersApi from "../../services/UsersApi";
+import Alert from "../../components/organism/atoms/alerts";
+import EmailInput from "../../components/organism/atoms/inputs/email";
+import PasswordInput from "../../components/organism/atoms/inputs/password";
+import PrimaryButton from "../../components/organism/atoms/buttons/primary";
+import TextInput from "../../components/organism/atoms/inputs/text";
 
-const LoginPage = () => {
+const SignupPage = () => {
     const [loading, setLoading] = useState(false);
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState([]);
 
-    const signin = async () => {
+    const signup = async () => {
         if (!loading) {
             setLoading(true);
-            const response = await UsersApi.signin({email, password});
+            const response = await UsersApi.signup({name, email, password});
 
-            if (response.status !== 200) {
+            if (response.status !== 201) {
                 setErrors(response.data);
                 return setLoading(false);
             }
@@ -28,14 +30,25 @@ const LoginPage = () => {
             return Router.push('/panel')
         }
     }
-    
+
     return (
         <div className="container mt-5">
             <div className="card">
                 <div className="card-body">
-                    <h2 className="card-title">Login</h2>
+                    <h2 className="card-title">Sign Up</h2>
 
                     <Alert errors={errors} />
+
+                    <TextInput label={'Name'}
+                                placeholder={'Your name'}
+                                setTextValue={(text) => {
+                                    setName(text);
+                                    setErrors([]);
+                                }}
+                                onPressEnter={() => {
+                                    return signup();
+                                }}
+                    />
 
                     <EmailInput label={'E-mail'}
                                 placeholder={'your@email.com'}
@@ -44,7 +57,7 @@ const LoginPage = () => {
                                     setErrors([]);
                                 }}
                                 onPressEnter={() => {
-                                    return signin();
+                                    return signup();
                                 }}
                     />
 
@@ -54,20 +67,20 @@ const LoginPage = () => {
                                        setErrors([]);
                                    }}
                                    onPressEnter={() => {
-                                       return signin();
+                                       return signup();
                                    }}
                     />
 
                     <div>
-                        <PrimaryButton label={!loading ? 'Sign-in' : 'Signin...'}
+                        <PrimaryButton label={!loading ? 'Register' : 'Registering...'}
                                        clicked={() => {
-                                           return signin();
+                                           return signup();
                                        }}
                         />
 
-                        <Link href={'/auth/signup'}>
+                        <Link href={'/'}>
                             <a className="card-link ml-2">
-                                Sign-up
+                                Sign-in
                             </a>
                         </Link>
                     </div>
@@ -77,4 +90,4 @@ const LoginPage = () => {
     )
 }
 
-export default LoginPage;
+export default SignupPage;

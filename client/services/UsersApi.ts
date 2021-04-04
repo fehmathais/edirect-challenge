@@ -1,12 +1,31 @@
 import instance from './ApiConfig';
 
-interface SignInRequest {
+interface SigninRequest {
     email: string;
     password: string;
 }
 
-const signin = async (data: SignInRequest) => {
+interface SignupRequest {
+    name: string;
+    email: string;
+    password: string;
+}
+
+const signin = async (data: SigninRequest) => {
     const uri = "/users/signin";
+
+    return instance
+        .post(uri, data, {withCredentials: true})
+        .then((response) => {
+            return response;
+        })
+        .catch((error) => {
+            return error.response;
+        })
+};
+
+const signup = async (data: SignupRequest) => {
+    const uri = "/users/signup";
 
     return instance
         .post(uri, data, {withCredentials: true})
@@ -47,5 +66,6 @@ const signout = async () => {
 export default {
     signin,
     currentuser,
-    signout
+    signout,
+    signup
 }

@@ -2,8 +2,6 @@ import Link from "next/link";
 
 const Header = ({ currentuser }) => {
     const links = [
-        !currentuser && {label: 'Sign Up', href: '/auth/signup'},
-        !currentuser && {label: 'Sign In', href: '/auth/signin'},
         currentuser && {label: 'Sign Out', href: '/auth/signout'}
     ]
     .filter(link => link)
