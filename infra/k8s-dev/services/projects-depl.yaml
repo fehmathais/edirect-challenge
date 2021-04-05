@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: projects-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: projects
+  template:
+    metadata:
+      labels:
+        app: projects
+    spec:
+      containers:
+        - name: projects
+          image: fehmathais/projects
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGO_URL
+              valueFrom:
+                secretKeyRef:
+                  name: secrets
+                  key: mongo-url
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: secrets
+                  key: jwt-key
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: projects-srv
+spec:
+  selector:
+    app: projects
+  ports:
+    - name: projects
+      protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: ClusterIP
