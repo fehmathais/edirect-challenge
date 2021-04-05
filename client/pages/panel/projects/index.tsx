@@ -30,7 +30,7 @@ const Projects = () => {
                     <p className="card-text">See your current tasks below:</p>
                 </div>
                 
-                <Tasks tasks={project.tasks} />
+                <Tasks tasks={project.tasks} projectId={project.id} onNewTaskCreated={() => setProject({})} />
                 
                 <div className="card-body d-flex justify-content-center">
                     <a href="#" 

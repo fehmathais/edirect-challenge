@@ -1,6 +1,8 @@
 import TimeRemaining from "./time-remaining";
+import CreateNewTask from "./create-new-task";
 
 interface IProps {
+    projectId: string;
     tasks: [
         {
             id: string;
@@ -9,11 +11,11 @@ interface IProps {
             expiration: string;
             description: string;
         }
-    ]
+    ];
+    onNewTaskCreated: () => any;
 }
 
 const Tasks = (props: IProps) => {
-    
     const tasks = props.tasks.map((task, index) => {
         return (
             <li className="list-group-item" key={index}>
@@ -29,8 +31,7 @@ const Tasks = (props: IProps) => {
                 {tasks}
                 
                 <li className="list-group-item">
-                    <i className="bi bi-plus"></i>
-                    Add new task
+                    <CreateNewTask projectId={props.projectId} onNewTaskCreated={() => props.onNewTaskCreated()} />
                 </li>
             </ul>
         </div>

@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import mongoose from "mongoose";
 import { Task } from "../models/task";
 import { body } from 'express-validator';
@@ -43,7 +43,9 @@ router.post(
             throw new NotFoundError();
         }
         
-        const currentDate = moment().format();
+        const currentDate = moment().tz('America/Sao_Paulo').format();
+        
+        console.log(moment());
         
         if (expiration <= currentDate) {
             throw new BadRequestError('You must provide a valid expiration date!');
