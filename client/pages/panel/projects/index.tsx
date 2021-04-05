@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Tasks from "./tasks";
 import NewProject from "./new-project";
 import ProjectsApi from "../../../services/ProjectsApi";
 import * as S from './styles';
@@ -28,16 +29,15 @@ const Projects = () => {
                     <h5 className="card-title">{project.title}</h5>
                     <p className="card-text">See your current tasks below:</p>
                 </div>
-                <ul className="list-group list-group-flush">
-                    <li className="list-group-item">An item</li>
-                    <li className="list-group-item">A second item</li>
-                    <li className="list-group-item">A third item</li>
-                </ul>
+                
+                <Tasks tasks={project.tasks} />
+                
                 <div className="card-body d-flex justify-content-center">
-                    <button 
-                       className="btn btn-danger" onClick={() => remove(project.id)}>
+                    <a href="#" 
+                       className="card-link text-danger" 
+                       onClick={() => remove(project.id)}>
                         Delete this project
-                    </button>
+                    </a>
                 </div>
             </S.Card>
         )
