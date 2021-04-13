@@ -45,8 +45,6 @@ router.post(
         
         const currentDate = moment().tz('America/Sao_Paulo').format();
         
-        console.log(moment());
-        
         if (expiration <= currentDate) {
             throw new BadRequestError('You must provide a valid expiration date!');
         }

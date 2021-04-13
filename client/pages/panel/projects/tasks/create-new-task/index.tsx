@@ -70,7 +70,7 @@ const CreateNewTask = (props: IProps) => {
             />
             
             <DateInput label={'Expiration time'} 
-                       placeholder={'00/00'} 
+                       placeholder={'00h00'} 
                        setTimeValue={(value) => {
                            setErrors([]);
                            setExpiration(value);
